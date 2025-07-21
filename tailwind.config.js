@@ -1,1 +1,5 @@
-// Content from <q>let me know. I can generate a starter for.docx
+export default {
+  content: ['./index.html', './src/**/*.{js,jsx}'],
+  theme: { extend: {} },
+  plugins: [],
+}

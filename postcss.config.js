@@ -1,1 +1,6 @@
-// Content from <q>let me know. I can generate a starter for.docx
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
