@@ -1,1 +1,6 @@
-// Content from <q>let me know. I can generate a starter for.docx
+/* Minimal default styles */
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f9fafb;
+}
