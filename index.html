@@ -1,12 +1,396 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Digital Health Check</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Health Check - Brand Analysis Platform</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+    <div id="app">
+        <!-- Page 1: Brand Input -->
+        <div id="brand-input-page" class="page active">
+            <div class="container">
+                <header class="page-header">
+                    <h1>Digital Health Check</h1>
+                    <p class="text-secondary">Get an AI-powered analysis of your brand's digital performance across 5 key areas</p>
+                </header>
+
+                <div class="form-container">
+                    <form id="brand-form" class="brand-form">
+                        <div class="form-section">
+                            <h3>Brand Information</h3>
+                            
+                            <div class="form-group">
+                                <label for="brand-name" class="form-label">Brand Name *</label>
+                                <input type="text" id="brand-name" name="brandName" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="website-url" class="form-label">Website URL *</label>
+                                <input type="url" id="website-url" name="websiteUrl" class="form-control" placeholder="https://yourwebsite.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="industry" class="form-label">Industry *</label>
+                                <select id="industry" name="industry" class="form-control" required>
+                                    <option value="">Select your industry</option>
+                                    <option value="Consumer Goods">Consumer Goods</option>
+                                    <option value="Finance">Finance</option>
+                                    <option value="Tech">Tech</option>
+                                    <option value="Healthcare">Healthcare</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Travel">Travel</option>
+                                    <option value="E-commerce">E-commerce</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="main-product" class="form-label">Main Product/Service *</label>
+                                <textarea id="main-product" name="mainProduct" class="form-control" rows="3" placeholder="Briefly describe your main product or service offering" required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Social Media Profiles (Optional)</h3>
+                            
+                            <div class="form-group">
+                                <label for="instagram" class="form-label">Instagram URL</label>
+                                <input type="url" id="instagram" name="instagram" class="form-control" placeholder="https://instagram.com/yourbrand">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="linkedin" class="form-label">LinkedIn URL</label>
+                                <input type="url" id="linkedin" name="linkedin" class="form-control" placeholder="https://linkedin.com/company/yourbrand">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="youtube" class="form-label">YouTube URL</label>
+                                <input type="url" id="youtube" name="youtube" class="form-control" placeholder="https://youtube.com/@yourbrand">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="twitter" class="form-label">X/Twitter URL</label>
+                                <input type="url" id="twitter" name="twitter" class="form-control" placeholder="https://x.com/yourbrand">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3>Competitive Analysis (Optional)</h3>
+                            <p class="form-description">Add up to 3 competitor URLs for benchmarking</p>
+                            
+                            <div class="form-group">
+                                <label for="competitor1" class="form-label">Competitor 1</label>
+                                <input type="url" id="competitor1" name="competitor1" class="form-control" placeholder="https://competitor1.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="competitor2" class="form-label">Competitor 2</label>
+                                <input type="url" id="competitor2" name="competitor2" class="form-control" placeholder="https://competitor2.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="competitor3" class="form-label">Competitor 3</label>
+                                <input type="url" id="competitor3" name="competitor3" class="form-control" placeholder="https://competitor3.com">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--lg btn--full-width">
+                            Generate Health Check Report
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Page -->
+        <div id="loading-page" class="page">
+            <div class="container">
+                <div class="loading-container">
+                    <div class="loading-content">
+                        <h2>Analyzing Your Digital Presence</h2>
+                        <p class="text-secondary">Our AI is examining your brand across multiple digital channels...</p>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div id="progress-fill" class="progress-fill"></div>
+                            </div>
+                            <span id="progress-text" class="progress-text">0%</span>
+                        </div>
+
+                        <div class="loading-steps">
+                            <div class="loading-step" id="step-1">
+                                <div class="step-indicator"></div>
+                                <span>Crawling website and social profiles</span>
+                            </div>
+                            <div class="loading-step" id="step-2">
+                                <div class="step-indicator"></div>
+                                <span>Analyzing digital experience & content</span>
+                            </div>
+                            <div class="loading-step" id="step-3">
+                                <div class="step-indicator"></div>
+                                <span>Evaluating data & analytics setup</span>
+                            </div>
+                            <div class="loading-step" id="step-4">
+                                <div class="step-indicator"></div>
+                                <span>Assessing martech & engineering</span>
+                            </div>
+                            <div class="loading-step" id="step-5">
+                                <div class="step-indicator"></div>
+                                <span>Reviewing campaigns & commerce</span>
+                            </div>
+                            <div class="loading-step" id="step-6">
+                                <div class="step-indicator"></div>
+                                <span>Checking AI search visibility</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2: Signup/Login -->
+        <div id="auth-page" class="page">
+            <div class="container">
+                <div class="auth-container">
+                    <div class="auth-header">
+                        <h2>Save Your Report</h2>
+                        <p class="text-secondary">Create an account to save your report and track progress over time</p>
+                    </div>
+
+                    <div class="auth-toggle">
+                        <button id="signup-tab" class="auth-tab active">Sign Up</button>
+                        <button id="login-tab" class="auth-tab">Log In</button>
+                    </div>
+
+                    <!-- Signup Form -->
+                    <form id="signup-form" class="auth-form active">
+                        <div class="form-group">
+                            <label for="signup-name" class="form-label">Full Name</label>
+                            <input type="text" id="signup-name" name="name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signup-email" class="form-label">Email Address</label>
+                            <input type="email" id="signup-email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signup-password" class="form-label">Password</label>
+                            <input type="password" id="signup-password" name="password" class="form-control" minlength="8" required>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--full-width">Create Account & View Report</button>
+                    </form>
+
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="login-email" class="form-label">Email Address</label>
+                            <input type="email" id="login-email" name="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password" class="form-label">Password</label>
+                            <input type="password" id="login-password" name="password" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn btn--primary btn--full-width">Log In & View Report</button>
+                    </form>
+
+                    <div class="auth-footer">
+                        <button id="continue-guest" class="btn btn--outline btn--full-width">Continue as Guest</button>
+                        <p class="guest-note">We'll email your report once it's generated</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 3: Report Results -->
+        <div id="report-page" class="page">
+            <div class="container">
+                <div class="report-header">
+                    <div class="brand-info">
+                        <h1 id="report-brand-name">Brand Name</h1>
+                        <div class="brand-details">
+                            <span id="report-industry">Industry</span>
+                            <span class="separator">•</span>
+                            <a id="report-website" href="#" target="_blank">Website</a>
+                        </div>
+                        <p id="report-product" class="brand-product"></p>
+                    </div>
+                    
+                    <div class="overall-score">
+                        <div class="score-circle">
+                            <span id="overall-score-number">0</span>
+                            <span class="score-total">/100</span>
+                        </div>
+                        <div class="health-grade" id="health-grade">
+                            <span class="grade-icon">🟡</span>
+                            <span class="grade-text">Calculating...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-actions">
+                    <button id="share-report" class="btn btn--primary">Share Report</button>
+                    <button id="download-pdf" class="btn btn--outline">Download PDF</button>
+                    <button id="email-report" class="btn btn--outline">Email Report</button>
+                </div>
+
+                <div class="assessment-areas">
+                    <!-- Digital Experience & Content -->
+                    <div class="assessment-area" data-area="Digital Experience & Content">
+                        <div class="area-header" data-toggle="collapse">
+                            <h3>Digital Experience & Content</h3>
+                            <div class="area-score">
+                                <span class="area-score-number">0</span>
+                                <span>/30</span>
+                            </div>
+                            <div class="expand-icon">▼</div>
+                        </div>
+                        <div class="area-content">
+                            <div class="metrics-grid" id="digital-experience-metrics"></div>
+                        </div>
+                    </div>
+
+                    <!-- Data & Analytics -->
+                    <div class="assessment-area" data-area="Data & Analytics">
+                        <div class="area-header" data-toggle="collapse">
+                            <h3>Data & Analytics</h3>
+                            <div class="area-score">
+                                <span class="area-score-number">0</span>
+                                <span>/25</span>
+                            </div>
+                            <div class="expand-icon">▼</div>
+                        </div>
+                        <div class="area-content">
+                            <div class="metrics-grid" id="data-analytics-metrics"></div>
+                        </div>
+                    </div>
+
+                    <!-- Engineering & Martech -->
+                    <div class="assessment-area" data-area="Engineering & Martech">
+                        <div class="area-header" data-toggle="collapse">
+                            <h3>Engineering & Martech</h3>
+                            <div class="area-score">
+                                <span class="area-score-number">0</span>
+                                <span>/25</span>
+                            </div>
+                            <div class="expand-icon">▼</div>
+                        </div>
+                        <div class="area-content">
+                            <div class="metrics-grid" id="engineering-martech-metrics"></div>
+                        </div>
+                    </div>
+
+                    <!-- Campaign & Commerce -->
+                    <div class="assessment-area" data-area="Campaign & Commerce">
+                        <div class="area-header" data-toggle="collapse">
+                            <h3>Campaign & Commerce</h3>
+                            <div class="area-score">
+                                <span class="area-score-number">0</span>
+                                <span>/25</span>
+                            </div>
+                            <div class="expand-icon">▼</div>
+                        </div>
+                        <div class="area-content">
+                            <div class="metrics-grid" id="campaign-commerce-metrics"></div>
+                        </div>
+                    </div>
+
+                    <!-- LLM & AI Search Visibility -->
+                    <div class="assessment-area" data-area="LLM & AI Search Visibility">
+                        <div class="area-header" data-toggle="collapse">
+                            <h3>LLM & AI Search Visibility</h3>
+                            <div class="area-score">
+                                <span class="area-score-number">0</span>
+                                <span>/25</span>
+                            </div>
+                            <div class="expand-icon">▼</div>
+                        </div>
+                        <div class="area-content">
+                            <div class="metrics-grid" id="llm-ai-metrics"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recommendations-section">
+                    <h3>Personalized Recommendations</h3>
+                    <div id="recommendations-list" class="recommendations-list"></div>
+                </div>
+
+                <div id="competitor-analysis" class="competitor-analysis" style="display: none;">
+                    <h3>Competitive Benchmarking</h3>
+                    <div class="competitor-chart">
+                        <p>Your brand compared to competitors across key metrics</p>
+                        <div id="competitor-comparison" class="comparison-bars"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share Modal -->
+        <div id="share-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Share Your Digital Health Check Report</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="share-options">
+                        <button id="copy-link" class="share-option">
+                            <span class="share-icon">🔗</span>
+                            <span>Copy Report Link</span>
+                        </button>
+                        <button id="share-linkedin" class="share-option">
+                            <span class="share-icon">💼</span>
+                            <span>Share on LinkedIn</span>
+                        </button>
+                        <button id="share-twitter" class="share-option">
+                            <span class="share-icon">🐦</span>
+                            <span>Share on X/Twitter</span>
+                        </button>
+                    </div>
+                    <div class="share-link-container">
+                        <label for="share-link-input">Shareable Link:</label>
+                        <div class="share-link-input-group">
+                            <input type="text" id="share-link-input" class="form-control" readonly>
+                            <button id="copy-share-link" class="btn btn--primary">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Modal -->
+        <div id="email-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Email Your Report</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="email-form">
+                        <div class="form-group">
+                            <label for="email-to" class="form-label">Send to:</label>
+                            <input type="email" id="email-to" class="form-control" placeholder="colleague@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-message" class="form-label">Message (optional):</label>
+                            <textarea id="email-message" class="form-control" rows="3" placeholder="Check out our digital health analysis..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full-width">Send Report</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications -->
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
